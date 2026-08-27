@@ -45,22 +45,16 @@ Second-year Digital Technologies student at AUPP. Coursework leans cybersecurity
 
 <h3 align="center">Stats</h3>
 
-<table align="center">
-  <tr>
-    <td valign="top">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-        <img src="assets/stats-light.svg" alt="GitHub stats">
-      </picture>
-    </td>
-    <td valign="top">
-      <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="assets/langs-dark.svg">
-        <img src="assets/langs-light.svg" alt="Top languages">
-      </picture>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
+    <img src="assets/stats-light.svg" alt="GitHub stats">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/langs-dark.svg">
+    <img src="assets/langs-light.svg" alt="Top languages">
+  </picture>
+</p>
 
 <p align="center">
   <picture>

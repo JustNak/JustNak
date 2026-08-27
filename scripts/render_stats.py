@@ -92,6 +92,9 @@ def svg_card(width: int, height: int, theme: dict, body: str) -> str:
 '''
 
 
+CARD_W, CARD_H = 420, 278
+
+
 def stats_svg(theme: dict, commits: int, contribs: int, prs: int, repos: int) -> str:
     rows = [
         ("Commits", fmt(commits)),
@@ -100,36 +103,37 @@ def stats_svg(theme: dict, commits: int, contribs: int, prs: int, repos: int) ->
         ("Repositories", fmt(repos)),
     ]
     items = []
-    y = 62
+    y = 86
     for label, value in rows:
         items.append(
             f'<text x="28" y="{y}" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" fill="{theme["muted"]}">{label}</text>'
-            f'<text x="467" y="{y}" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="{theme["text"]}">{value}</text>'
+            f'<text x="{CARD_W - 28}" y="{y}" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="{theme["text"]}">{value}</text>'
         )
-        y += 32
-    body = f'''<text x="28" y="34" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="{theme["title"]}">GitHub stats</text>
+        y += 44
+    body = f'''<text x="28" y="36" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="{theme["title"]}">GitHub stats</text>
   {"".join(items)}'''
-    return svg_card(495, 198, theme, body)
+    return svg_card(CARD_W, CARD_H, theme, body)
 
 
 def langs_svg(theme: dict, langs: list[tuple[str, int]]) -> str:
     total = sum(n for _, n in langs) or 1
     bars = []
     y = 62
+    bar_w = CARD_W - 56
     for name, n in langs:
         pct = n / total * 100
-        width = max(8, round(330 * n / total))
+        width = max(8, round(bar_w * n / total))
         color = LANG_COLORS.get(name, "#8b949e")
         bars.append(
             f'<text x="28" y="{y}" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="{theme["text"]}">{name}</text>'
-            f'<text x="372" y="{y}" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="{theme["muted"]}">{pct:.1f}%</text>'
-            f'<rect x="28" y="{y + 8}" width="344" height="8" rx="4" fill="{theme["empty"]}"/>'
+            f'<text x="{CARD_W - 28}" y="{y}" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="{theme["muted"]}">{pct:.1f}%</text>'
+            f'<rect x="28" y="{y + 8}" width="{bar_w}" height="8" rx="4" fill="{theme["empty"]}"/>'
             f'<rect x="28" y="{y + 8}" width="{width}" height="8" rx="4" fill="{color}"/>'
         )
         y += 36
-    body = f'''<text x="28" y="34" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="{theme["title"]}">Top languages</text>
+    body = f'''<text x="28" y="36" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="{theme["title"]}">Top languages</text>
   {"".join(bars)}'''
-    return svg_card(400, 278, theme, body)
+    return svg_card(CARD_W, CARD_H, theme, body)
 
 
 def streak_svg(theme: dict, current: int, longest: int, total: int) -> str:
