@@ -38,24 +38,24 @@ Second-year Digital Technologies student at AUPP. Coursework leans cybersecurity
 <table align="center">
   <tr>
     <td valign="top">
-      <img src="https://github-readme-stats.vercel.app/api?username=JustNak&show_icons=true&include_all_commits=true&hide_border=true&bg_color=161b22&title_color=2dd4bf&icon_color=2dd4bf&text_color=c9d1d9&ring_color=2dd4bf#gh-dark-mode-only" alt="GitHub stats">
-      <img src="https://github-readme-stats.vercel.app/api?username=JustNak&show_icons=true&include_all_commits=true&hide_border=true&bg_color=ffffff&title_color=0d9488&icon_color=0d9488&text_color=1f2328&ring_color=0d9488#gh-light-mode-only" alt="GitHub stats">
+      <img src="assets/stats-dark.svg#gh-dark-mode-only" alt="GitHub stats">
+      <img src="assets/stats-light.svg#gh-light-mode-only" alt="GitHub stats">
     </td>
     <td valign="top">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=JustNak&layout=compact&langs_count=6&hide_border=true&exclude_repo=omarchy,omawrite,omacalc,build-your-own-x,cloudflare-gateway-pihole-scripts,ctrld-sync&bg_color=161b22&title_color=2dd4bf&text_color=c9d1d9#gh-dark-mode-only" alt="Top languages">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=JustNak&layout=compact&langs_count=6&hide_border=true&exclude_repo=omarchy,omawrite,omacalc,build-your-own-x,cloudflare-gateway-pihole-scripts,ctrld-sync&bg_color=ffffff&title_color=0d9488&text_color=1f2328#gh-light-mode-only" alt="Top languages">
+      <img src="assets/langs-dark.svg#gh-dark-mode-only" alt="Top languages">
+      <img src="assets/langs-light.svg#gh-light-mode-only" alt="Top languages">
     </td>
   </tr>
 </table>
 
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=JustNak&hide_border=true&background=161B22&ring=2DD4BF&fire=2DD4BF&currStreakNum=F0F6FC&sideNums=F0F6FC&currStreakLabel=2DD4BF&sideLabels=8B949E&dates=8B949E#gh-dark-mode-only" alt="GitHub streak">
-  <img src="https://streak-stats.demolab.com?user=JustNak&hide_border=true&background=FFFFFF&ring=0D9488&fire=0D9488&currStreakNum=1F2328&sideNums=1F2328&currStreakLabel=0D9488&sideLabels=656D76&dates=656D76#gh-light-mode-only" alt="GitHub streak">
+  <img src="assets/streak-dark.svg#gh-dark-mode-only" alt="GitHub streak">
+  <img src="assets/streak-light.svg#gh-light-mode-only" alt="GitHub streak">
 </p>
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=JustNak&bg_color=161b22&color=9aa4b2&line=2dd4bf&point=2dd4bf&area=true&hide_border=true&radius=16&custom_title=Contributions#gh-dark-mode-only" alt="Contribution graph">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=JustNak&bg_color=ffffff&color=656d76&line=0d9488&point=0d9488&area=true&hide_border=true&radius=16&custom_title=Contributions#gh-light-mode-only" alt="Contribution graph">
+  <img src="assets/graph-dark.svg#gh-dark-mode-only" alt="Contribution graph">
+  <img src="assets/graph-light.svg#gh-light-mode-only" alt="Contribution graph">
 </p>
 
 <h3 align="center">Now</h3>
