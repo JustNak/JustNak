@@ -1,6 +1,8 @@
 <p align="center">
-  <img src="assets/header-dark.png#gh-dark-mode-only" alt="Socheat Rotanak" width="680">
-  <img src="assets/header-light.png#gh-light-mode-only" alt="Socheat Rotanak" width="680">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.png">
+    <img src="assets/header-light.png" alt="Socheat Rotanak" width="680">
+  </picture>
 </p>
 
 <p align="center">
@@ -8,8 +10,10 @@
 </p>
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=rust,js,ts,windows,linux,git,github&theme=dark#gh-dark-mode-only" alt="Rust, JavaScript, TypeScript, Windows, Linux, Git, GitHub">
-  <img src="https://skillicons.dev/icons?i=rust,js,ts,windows,linux,git,github&theme=light#gh-light-mode-only" alt="Rust, JavaScript, TypeScript, Windows, Linux, Git, GitHub">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=rust,js,ts,windows,linux,git,github&theme=dark">
+    <img src="https://skillicons.dev/icons?i=rust,js,ts,windows,linux,git,github&theme=light" alt="Rust, JavaScript, TypeScript, Windows, Linux, Git, GitHub">
+  </picture>
 </p>
 
 I write local-first Windows tools in Rust. Download managers, game-library compression, DNS. I care about the boring parts: installers that register native hosts correctly, queues that resume, resolvers that fail over.
@@ -20,16 +24,22 @@ Second-year Digital Technologies student at AUPP. Coursework leans cybersecurity
 
 <p align="center">
   <a href="https://github.com/JustNak/RusticDL">
-    <img src="assets/rusticdl-card-dark.png#gh-dark-mode-only" alt="RusticDL" width="230">
-    <img src="assets/rusticdl-card-light.png#gh-light-mode-only" alt="RusticDL" width="230">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/rusticdl-card-dark.png">
+      <img src="assets/rusticdl-card-light.png" alt="RusticDL" width="230">
+    </picture>
   </a>
   <a href="https://github.com/JustNak/RusticGU">
-    <img src="assets/rusticgu-card-dark.png#gh-dark-mode-only" alt="RusticGU" width="230">
-    <img src="assets/rusticgu-card-light.png#gh-light-mode-only" alt="RusticGU" width="230">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/rusticgu-card-dark.png">
+      <img src="assets/rusticgu-card-light.png" alt="RusticGU" width="230">
+    </picture>
   </a>
   <a href="https://github.com/JustNak/DNSBenchPro">
-    <img src="assets/dns-card-dark.png#gh-dark-mode-only" alt="DNS Bench Pro" width="230">
-    <img src="assets/dns-card-light.png#gh-light-mode-only" alt="DNS Bench Pro" width="230">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dns-card-dark.png">
+      <img src="assets/dns-card-light.png" alt="DNS Bench Pro" width="230">
+    </picture>
   </a>
 </p>
 
@@ -38,24 +48,25 @@ Second-year Digital Technologies student at AUPP. Coursework leans cybersecurity
 <table align="center">
   <tr>
     <td valign="top">
-      <img src="assets/stats-dark.svg#gh-dark-mode-only" alt="GitHub stats">
-      <img src="assets/stats-light.svg#gh-light-mode-only" alt="GitHub stats">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
+        <img src="assets/stats-light.svg" alt="GitHub stats">
+      </picture>
     </td>
     <td valign="top">
-      <img src="assets/langs-dark.svg#gh-dark-mode-only" alt="Top languages">
-      <img src="assets/langs-light.svg#gh-light-mode-only" alt="Top languages">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="assets/langs-dark.svg">
+        <img src="assets/langs-light.svg" alt="Top languages">
+      </picture>
     </td>
   </tr>
 </table>
 
 <p align="center">
-  <img src="assets/streak-dark.svg#gh-dark-mode-only" alt="GitHub streak">
-  <img src="assets/streak-light.svg#gh-light-mode-only" alt="GitHub streak">
-</p>
-
-<p align="center">
-  <img src="assets/graph-dark.svg#gh-dark-mode-only" alt="Contribution graph">
-  <img src="assets/graph-light.svg#gh-light-mode-only" alt="Contribution graph">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/streak-dark.svg">
+    <img src="assets/streak-light.svg" alt="GitHub streak">
+  </picture>
 </p>
 
 <h3 align="center">Now</h3>

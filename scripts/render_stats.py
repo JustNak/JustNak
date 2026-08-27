@@ -68,19 +68,6 @@ def fmt(n: int) -> str:
     return f"{n:,}"
 
 
-def heat_color(count: int, max_count: int, palette: list[str]) -> str:
-    if count <= 0 or max_count <= 0:
-        return palette[0]
-    t = count / max_count
-    if t > 0.75:
-        return palette[4]
-    if t > 0.5:
-        return palette[3]
-    if t > 0.25:
-        return palette[2]
-    return palette[1]
-
-
 def streaks(days: list[tuple[date, int]]) -> tuple[int, int]:
     current = longest = run = 0
     today = date.today()
@@ -156,23 +143,6 @@ def streak_svg(theme: dict, current: int, longest: int, total: int) -> str:
     return svg_card(660, 148, theme, body)
 
 
-def graph_svg(theme: dict, weeks: list[list[int]]) -> str:
-    max_count = max((c for week in weeks for c in week), default=1) or 1
-    cell, gap = 11, 3
-    left, top = 28, 48
-    squares = []
-    for x, week in enumerate(weeks):
-        for y, count in enumerate(week):
-            fill = heat_color(count, max_count, theme["heat"])
-            squares.append(
-                f'<rect x="{left + x * (cell + gap)}" y="{top + y * (cell + gap)}" width="{cell}" height="{cell}" rx="2" fill="{fill}"/>'
-            )
-    width = left + len(weeks) * (cell + gap) + 20
-    body = f'''<text x="28" y="32" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="{theme["title"]}">Contributions</text>
-  {"".join(squares)}'''
-    return svg_card(max(width, 760), 160, theme, body)
-
-
 def main() -> None:
     ASSETS.mkdir(exist_ok=True)
 
@@ -196,14 +166,10 @@ def main() -> None:
     contribs = calendar["totalContributions"]
 
     day_list: list[tuple[date, int]] = []
-    weeks: list[list[int]] = []
     for week in calendar["weeks"]:
-        counts = []
         for day in week["contributionDays"]:
             n = int(day["contributionCount"])
             day_list.append((date.fromisoformat(day["date"]), n))
-            counts.append(n)
-        weeks.append(counts)
 
     current, longest = streaks(day_list)
 
@@ -219,7 +185,6 @@ def main() -> None:
         (ASSETS / f"stats-{suffix}.svg").write_text(stats_svg(theme, commits, contribs, prs, repos), encoding="utf-8")
         (ASSETS / f"langs-{suffix}.svg").write_text(langs_svg(theme, top), encoding="utf-8")
         (ASSETS / f"streak-{suffix}.svg").write_text(streak_svg(theme, current, longest, contribs), encoding="utf-8")
-        (ASSETS / f"graph-{suffix}.svg").write_text(graph_svg(theme, weeks), encoding="utf-8")
 
 
 if __name__ == "__main__":
