@@ -16,7 +16,7 @@
   </picture>
 </p>
 
-I write local-first Windows tools in Rust. Download managers, game-library compression, DNS. I care about the boring parts: installers that register native hosts correctly, queues that resume, resolvers that fail over.
+Like making stuff with RUST. Download manager, game-library compression, DNS latency tester.
 
 Second-year Digital Technologies student at AUPP. Coursework leans cybersecurity and networking.
 
