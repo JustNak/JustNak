@@ -1,220 +1,162 @@
-"""Render profile header, DNS icons, and project cards."""
+from __future__ import annotations
 
+import base64
+from html import escape
 from pathlib import Path
-
-from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
-FONTS = Path(r"C:\Windows\Fonts")
+BRAND = ASSETS / "brand"
 
-HEADER_W, HEADER_H = 1360, 340
-CARD_W, CARD_H = 420, 500
-LOGO_SIZE = 148
-RADIUS = 28
+FONT = "Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif"
+MONO = "Cascadia Code, SFMono-Regular, Consolas, Liberation Mono, monospace"
 
+DARK = {
+    "bg": "#12100e",
+    "border": "#2d2721",
+    "text": "#f2ede4",
+    "muted": "#a79c8d",
+    "faint": "#6f655c",
+    "accent": "#e07a5f",
+}
 
-def load(name: str, size: int) -> ImageFont.FreeTypeFont:
-    return ImageFont.truetype(str(FONTS / name), size)
-
-
-def hex_to_rgba(value: str, alpha: int = 255) -> tuple[int, int, int, int]:
-    v = value.lstrip("#")
-    r, g, b = int(v[0:2], 16), int(v[2:4], 16), int(v[4:6], 16)
-    return (r, g, b, alpha)
-
-
-def center_x(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont, width: int) -> float:
-    box = draw.textbbox((0, 0), text, font=font)
-    return (width - (box[2] - box[0])) / 2
-
-
-def wrap_text(draw: ImageDraw.ImageDraw, text: str, font: ImageFont.FreeTypeFont, max_width: int) -> list[str]:
-    words = text.split()
-    lines: list[str] = []
-    current = ""
-    for word in words:
-        trial = (current + " " + word).strip()
-        if draw.textlength(trial, font=font) <= max_width:
-            current = trial
-        else:
-            if current:
-                lines.append(current)
-            current = word
-    if current:
-        lines.append(current)
-    return lines
+LIGHT = {
+    "bg": "#fbf8f2",
+    "border": "#e2d9cc",
+    "text": "#1c1917",
+    "muted": "#6b6258",
+    "faint": "#9a9083",
+    "accent": "#b4441f",
+}
 
 
-def round_image(img: Image.Image, radius: int) -> Image.Image:
-    img = img.convert("RGBA")
-    mask = Image.new("L", img.size, 0)
-    ImageDraw.Draw(mask).rounded_rectangle((0, 0, img.size[0], img.size[1]), radius=radius, fill=255)
-    out = Image.new("RGBA", img.size, (0, 0, 0, 0))
-    out.paste(img, (0, 0))
-    out.putalpha(mask)
-    return out
-
-
-def header(path: Path, name_fill: str, tag_fill: str, meta_fill: str, accent: str) -> None:
-    img = Image.new("RGBA", (HEADER_W, HEADER_H), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    name_font = load("segoeuib.ttf", 64)
-    tag_font = load("segoeui.ttf", 26)
-    meta_font = load("segoeui.ttf", 18)
-
-    name = "Socheat Rotanak"
-    tag = "Windows software that stays on your machine"
-    meta = "Phnom Penh   ·   AUPP   ·   Rust"
-
-    d.text((center_x(d, name, name_font, HEADER_W), 58), name, font=name_font, fill=name_fill)
-
-    line_w, line_h = 64, 4
-    lx = (HEADER_W - line_w) / 2
-    d.rounded_rectangle((lx, 148, lx + line_w, 148 + line_h), radius=2, fill=accent)
-
-    d.text((center_x(d, tag, tag_font, HEADER_W), 176), tag, font=tag_font, fill=tag_fill)
-    d.text((center_x(d, meta, meta_font, HEADER_W), 228), meta, font=meta_font, fill=meta_fill)
-    img.save(path, "PNG")
-
-
-def dns_icon(path: Path, bg: str, ring: str, core: str) -> None:
-    size = 256
-    img = Image.new("RGBA", (size, size), bg)
-    d = ImageDraw.Draw(img)
-    cx, cy = size / 2, size / 2 + 4
-
-    d.ellipse((40, 40, 216, 216), outline=ring, width=12)
-    d.ellipse((78, 40, 178, 216), outline=ring, width=8)
-    d.arc((40, 92, 216, 164), start=0, end=360, fill=ring, width=8)
-    d.line((40, 128, 216, 128), fill=ring, width=8)
-    d.ellipse((cx - 11, cy - 11, cx + 11, cy + 11), fill=core)
-
-    img.save(path, "PNG")
-
-
-def project_card(
-    path: Path,
-    logo_path: Path,
-    title: str,
-    blurb: str,
-    tags: str,
-    bg: str,
-    border: str,
-    title_fill: str,
-    body_fill: str,
-    tag_fill: str,
-    accent: str,
-) -> None:
-    img = Image.new("RGBA", (CARD_W, CARD_H), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    d.rounded_rectangle((1, 1, CARD_W - 2, CARD_H - 2), radius=RADIUS, fill=bg, outline=border, width=2)
-
-    logo = Image.open(logo_path).convert("RGBA").resize((LOGO_SIZE, LOGO_SIZE), Image.Resampling.LANCZOS)
-    logo = round_image(logo, 28)
-    lx = (CARD_W - LOGO_SIZE) // 2
-    img.paste(logo, (lx, 48), logo)
-
-    title_font = load("segoeuib.ttf", 28)
-    body_font = load("segoeui.ttf", 20)
-    tag_font = load("segoeui.ttf", 16)
-
-    y = 48 + LOGO_SIZE + 28
-    d.text((center_x(d, title, title_font, CARD_W), y), title, font=title_font, fill=title_fill)
-
-    accent_w = 40
-    ay = y + 46
-    d.rounded_rectangle(
-        ((CARD_W - accent_w) / 2, ay, (CARD_W + accent_w) / 2, ay + 3),
-        radius=2,
-        fill=accent,
+def svg(width: int, height: int, title: str, body: str) -> str:
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+        f'viewBox="0 0 {width} {height}" role="img">\n'
+        f"  <title>{escape(title)}</title>\n"
+        f"{body}\n"
+        f"</svg>\n"
     )
 
-    y = ay + 22
-    for line in wrap_text(d, blurb, body_font, CARD_W - 64):
-        d.text((center_x(d, line, body_font, CARD_W), y), line, font=body_font, fill=body_fill)
-        y += 28
 
-    d.text((center_x(d, tags, tag_font, CARD_W), CARD_H - 56), tags, font=tag_font, fill=tag_fill)
-    img.save(path, "PNG")
+def text(x: float, y: float, value: str, size: float, fill: str, *, weight: int = 400,
+         family: str = FONT, anchor: str = "start", spacing: float | None = None) -> str:
+    extra = f' text-anchor="{anchor}"' if anchor != "start" else ""
+    if spacing is not None:
+        extra += f' letter-spacing="{spacing}"'
+    return (
+        f'  <text x="{x}" y="{y}" font-family="{family}" font-size="{size}" '
+        f'font-weight="{weight}" fill="{fill}"{extra}>{escape(value)}</text>'
+    )
+
+
+def data_uri(path: Path) -> str:
+    mime = "image/svg+xml" if path.suffix == ".svg" else "image/png"
+    payload = base64.b64encode(path.read_bytes()).decode("ascii")
+    return f"data:{mime};base64,{payload}"
+
+
+def header(theme: dict) -> str:
+    body = "\n".join([
+        text(0, 18, "PORTFOLIO / 2026", 10, theme["faint"], family=MONO, spacing=1.6),
+        text(860, 18, "PHNOM PENH · UTC+7", 10, theme["faint"], family=MONO, anchor="end", spacing=1.2),
+        f'  <line x1="0" y1="34" x2="860" y2="34" stroke="{theme["border"]}" stroke-width="1"/>',
+        f'  <text x="0" y="126" font-family="{FONT}" font-size="76" font-weight="800" '
+        f'letter-spacing="-2.6" fill="{theme["text"]}">Socheat '
+        f'<tspan fill="{theme["accent"]}">Rotanak</tspan></text>',
+        text(0, 166, "Local-first Windows tools, built in Rust.", 22, theme["muted"]),
+        f'  <line x1="0" y1="204" x2="860" y2="204" stroke="{theme["border"]}" stroke-width="1"/>',
+        f'  <rect x="0" y="203" width="120" height="2" fill="{theme["accent"]}"/>',
+        text(0, 236, "FOCUS", 10, theme["accent"], family=MONO, spacing=1.4),
+        text(58, 236, "Local-first software", 13, theme["muted"]),
+        text(262, 236, "STACK", 10, theme["accent"], family=MONO, spacing=1.4),
+        text(320, 236, "Rust · GPUI · TypeScript", 13, theme["muted"]),
+        text(548, 236, "STUDY", 10, theme["accent"], family=MONO, spacing=1.4),
+        text(606, 236, "Cybersecurity & networking", 13, theme["muted"]),
+    ])
+    return svg(860, 252, "Socheat Rotanak — local-first Windows tools, built in Rust", body)
+
+
+def featured_card(theme: dict, logo: Path) -> str:
+    uri = data_uri(logo)
+    body = "\n".join([
+        f'  <defs><clipPath id="logo"><rect x="36" y="76" width="104" height="104" rx="18"/></clipPath></defs>',
+        f'  <rect x="0.5" y="0.5" width="859" height="291" rx="10" fill="{theme["bg"]}" stroke="{theme["border"]}"/>',
+        text(36, 46, "01", 11, theme["accent"], family=MONO, spacing=1.2),
+        text(64, 46, "FEATURED", 9, theme["faint"], family=MONO, spacing=1.6),
+        text(824, 48, "↗", 18, theme["muted"], anchor="end"),
+        f'  <image x="36" y="76" width="104" height="104" href="{uri}" clip-path="url(#logo)" preserveAspectRatio="xMidYMid slice"/>',
+        f'  <rect x="36.5" y="76.5" width="103" height="103" rx="18" fill="none" stroke="{theme["border"]}"/>',
+        text(168, 116, "RusticDL", 40, theme["text"], weight=700, spacing=-0.8),
+        text(168, 152, "A local-first HTTP(S) download manager with", 22, theme["muted"]),
+        text(168, 180, "segmented transfers, resume, and a browser handoff.", 22, theme["muted"]),
+        text(168, 224, "RUST  /  GPUI  /  WINDOWS · LINUX", 11, theme["faint"], family=MONO, spacing=1.1),
+        f'  <line x1="36" y1="250" x2="824" y2="250" stroke="{theme["border"]}"/>',
+        text(36, 274, "VIEW PROJECT", 9, theme["accent"], family=MONO, spacing=1.6),
+        text(824, 274, "github.com/JustNak/RusticDL", 9, theme["faint"], family=MONO, anchor="end"),
+    ])
+    return svg(860, 292, "RusticDL — local-first download manager for Windows and Linux", body)
+
+
+def small_card(theme: dict, logo: Path, index: str, title: str, lines: list[str], stack: str,
+               url: str) -> str:
+    uri = data_uri(logo)
+    desc = "\n".join(
+        text(28, 182 + i * 22, line, 15, theme["muted"]) for i, line in enumerate(lines)
+    )
+    body = "\n".join([
+        f'  <defs><clipPath id="logo"><rect x="28" y="64" width="52" height="52" rx="11"/></clipPath></defs>',
+        f'  <rect x="0.5" y="0.5" width="419" height="291" rx="10" fill="{theme["bg"]}" stroke="{theme["border"]}"/>',
+        text(28, 40, index, 10, theme["accent"], family=MONO, spacing=1.2),
+        text(392, 42, "↗", 16, theme["muted"], anchor="end"),
+        f'  <image x="28" y="64" width="52" height="52" href="{uri}" clip-path="url(#logo)" preserveAspectRatio="xMidYMid slice"/>',
+        f'  <rect x="28.5" y="64.5" width="51" height="51" rx="11" fill="none" stroke="{theme["border"]}"/>',
+        text(28, 150, title, 26, theme["text"], weight=700, spacing=-0.4),
+        desc,
+        f'  <line x1="28" y1="246" x2="392" y2="246" stroke="{theme["border"]}"/>',
+        text(28, 270, stack, 9, theme["faint"], family=MONO, spacing=1.0),
+        text(392, 270, "VIEW PROJECT", 8, theme["accent"], family=MONO, anchor="end", spacing=1.2),
+    ])
+    return svg(420, 292, f"{title} — {url}", body)
 
 
 def main() -> None:
     ASSETS.mkdir(exist_ok=True)
-    header(
-        ASSETS / "header-dark.png",
-        name_fill="#f0f6fc",
-        tag_fill="#9aa4b2",
-        meta_fill="#6e7681",
-        accent="#2dd4bf",
-    )
-    header(
-        ASSETS / "header-light.png",
-        name_fill="#1f2328",
-        tag_fill="#656d76",
-        meta_fill="#8b949e",
-        accent="#0d9488",
-    )
-    dns_icon(
-        ASSETS / "dns-dark.png",
-        bg="#111111",
-        ring="#5eead4",
-        core="#f0f6fc",
-    )
-    dns_icon(
-        ASSETS / "dns-light.png",
-        bg="#f3f4f6",
-        ring="#0f766e",
-        core="#111111",
-    )
-
-    projects = [
-        (
-            "rusticdl",
-            ASSETS / "rusticdl.png",
-            ASSETS / "rusticdl-light.png",
-            "RusticDL",
-            "Local-first HTTP(S) download manager for Windows",
-            "Rust  ·  GPUI  ·  Windows",
-        ),
-        (
-            "rusticgu",
-            ASSETS / "rusticgu.png",
-            ASSETS / "rusticgu-light.png",
-            "RusticGU",
-            "Compact a Steam library with transparent WOF compression",
-            "Rust  ·  GPUI  ·  Steam",
-        ),
-        (
-            "dns",
-            ASSETS / "dns-dark.png",
-            ASSETS / "dns-light.png",
-            "DNS Bench Pro",
-            "DoH latency from your network, measured in the browser",
-            "JavaScript  ·  DNS  ·  Privacy",
-        ),
-    ]
-
-    dark = dict(
-        bg="#161b22",
-        border="#30363d",
-        title_fill="#f0f6fc",
-        body_fill="#9aa4b2",
-        tag_fill="#6e7681",
-        accent="#2dd4bf",
-    )
-    light = dict(
-        bg="#ffffff",
-        border="#d0d7de",
-        title_fill="#1f2328",
-        body_fill="#656d76",
-        tag_fill="#8b949e",
-        accent="#0d9488",
-    )
-
-    for slug, logo_dark, logo_light, title, blurb, tags in projects:
-        project_card(ASSETS / f"{slug}-card-dark.png", logo_dark, title, blurb, tags, **dark)
-        project_card(ASSETS / f"{slug}-card-light.png", logo_light, title, blurb, tags, **light)
+    logos = {
+        "rusticdl": BRAND / "rusticdl.png",
+        "rusticgu": BRAND / "rusticgu.png",
+        "dns": BRAND / "dns.svg",
+    }
+    for suffix, theme in (("dark", DARK), ("light", LIGHT)):
+        (ASSETS / f"header-{suffix}.svg").write_text(header(theme), encoding="utf-8")
+        (ASSETS / f"rusticdl-card-{suffix}.svg").write_text(
+            featured_card(theme, logos["rusticdl"]), encoding="utf-8"
+        )
+        (ASSETS / f"rusticgu-card-{suffix}.svg").write_text(
+            small_card(
+                theme,
+                logos["rusticgu"],
+                "02",
+                "RusticGU",
+                ["Shrinks Steam libraries with transparent", "WOF compression, so games stay playable."],
+                "RUST  /  GPUI  /  WINDOWS",
+                "github.com/JustNak/RusticGU",
+            ),
+            encoding="utf-8",
+        )
+        (ASSETS / f"dns-card-{suffix}.svg").write_text(
+            small_card(
+                theme,
+                logos["dns"],
+                "03",
+                "DNS Bench Pro",
+                ["A DNS-over-HTTPS latency benchmark that", "runs entirely in your browser."],
+                "JAVASCRIPT  /  DNS  /  PRIVACY",
+                "github.com/JustNak/DNSBenchPro",
+            ),
+            encoding="utf-8",
+        )
 
 
 if __name__ == "__main__":

@@ -1,71 +1,55 @@
-<p align="center">
+<p>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.png">
-    <img src="assets/header-light.png" alt="Socheat Rotanak" width="680">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg">
+    <img src="assets/header-light.svg" alt="Socheat Rotanak — local-first Windows tools, built in Rust" width="860">
   </picture>
 </p>
 
-<p align="center">
-  <a href="mailto:socheatrotanak@gmail.com">socheatrotanak@gmail.com</a>
-</p>
+Second-year Digital Technologies student at AUPP, studying cybersecurity and networking. I build local-first Windows software in Rust: download managers, library compression, and DNS tooling.
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=rust,js,ts,windows,linux,git,github&theme=dark">
-    <img src="https://skillicons.dev/icons?i=rust,js,ts,windows,linux,git,github&theme=light" alt="Rust, JavaScript, TypeScript, Windows, Linux, Git, GitHub">
-  </picture>
-</p>
+## Selected work
 
-Like making stuff with RUST. Download manager, game-library compression, DNS latency tester.
-
-Second-year Digital Technologies student at AUPP. Coursework leans cybersecurity and networking.
-
-<h3 align="center">Projects</h3>
-
-<p align="center">
+<p>
   <a href="https://github.com/JustNak/RusticDL">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/rusticdl-card-dark.png">
-      <img src="assets/rusticdl-card-light.png" alt="RusticDL" width="230">
+      <source media="(prefers-color-scheme: dark)" srcset="assets/rusticdl-card-dark.svg">
+      <img src="assets/rusticdl-card-light.svg" alt="RusticDL — local-first download manager for Windows and Linux" width="860">
     </picture>
   </a>
+</p>
+
+<p>
   <a href="https://github.com/JustNak/RusticGU">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/rusticgu-card-dark.png">
-      <img src="assets/rusticgu-card-light.png" alt="RusticGU" width="230">
+      <source media="(prefers-color-scheme: dark)" srcset="assets/rusticgu-card-dark.svg">
+      <img src="assets/rusticgu-card-light.svg" alt="RusticGU — Steam library compression for Windows" width="400">
     </picture>
   </a>
   <a href="https://github.com/JustNak/DNSBenchPro">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="assets/dns-card-dark.png">
-      <img src="assets/dns-card-light.png" alt="DNS Bench Pro" width="230">
+      <source media="(prefers-color-scheme: dark)" srcset="assets/dns-card-dark.svg">
+      <img src="assets/dns-card-light.svg" alt="DNS Bench Pro — DNS-over-HTTPS latency benchmark" width="400">
     </picture>
   </a>
 </p>
 
-<h3 align="center">Stats</h3>
+> Building the Rustic apps and studying networking. Breaking my own DNS setup on purpose, then putting it back.
 
-<p align="center">
+## Activity
+
+<p>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
-    <img src="assets/stats-light.svg" alt="GitHub stats">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
+    <img src="assets/activity-light.svg" alt="GitHub activity for JustNak" width="400">
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/langs-dark.svg">
-    <img src="assets/langs-light.svg" alt="Top languages">
-  </picture>
-</p>
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/streak-dark.svg">
-    <img src="assets/streak-light.svg" alt="GitHub streak">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/languages-dark.svg">
+    <img src="assets/languages-light.svg" alt="Top languages and contribution streak" width="400">
   </picture>
 </p>
 
-<h3 align="center">Now</h3>
+---
 
-<p align="center">
-  Building the Rustic apps. Studying networking.<br>
-  Breaking my own DNS setup on purpose, then putting it back.
+<p>
+  <a href="mailto:socheatrotanak@gmail.com">socheatrotanak@gmail.com</a> · <a href="https://github.com/JustNak">github.com/JustNak</a>
 </p>

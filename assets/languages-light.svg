@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="312" viewBox="0 0 420 312" role="img">
+  <title>Top languages and contribution streak for JustNak</title>
+  <rect x="0.5" y="0.5" width="419" height="311" rx="10" fill="#fbf8f2" stroke="#e2d9cc"/>
+  <text x="28" y="36" font-family="Cascadia Code, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="10" font-weight="400" fill="#b4441f" letter-spacing="1.6">LANGUAGES</text>
+  <text x="392" y="36" font-family="Cascadia Code, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="9" font-weight="400" fill="#9a9083" text-anchor="end" letter-spacing="1.3">BY BYTES</text>
+  <rect x="28.0" y="58" width="219.3" height="12" rx="3" fill="#b4441f"/>
+  <rect x="249.3" y="58" width="88.7" height="12" rx="3" fill="#cc6a44"/>
+  <rect x="340.0" y="58" width="23.1" height="12" rx="3" fill="#dc8e6d"/>
+  <rect x="365.2" y="58" width="12.4" height="12" rx="3" fill="#e4b29a"/>
+  <rect x="379.5" y="58" width="12.5" height="12" rx="3" fill="#cdb8a4"/>
+  <circle cx="30" cy="98" r="3.6" fill="#b4441f"/>
+  <text x="42" y="102" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#1c1917">Rust</text>
+  <text x="392" y="102" font-family="Cascadia Code, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="10.5" font-weight="400" fill="#6b6258" text-anchor="end">61.6%</text>
+  <circle cx="30" cy="132" r="3.6" fill="#cc6a44"/>
+  <text x="42" y="136" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#1c1917">TypeScript</text>
+  <text x="392" y="136" font-family="Cascadia Code, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="10.5" font-weight="400" fill="#6b6258" text-anchor="end">24.9%</text>
+  <circle cx="30" cy="166" r="3.6" fill="#dc8e6d"/>
+  <text x="42" y="170" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#1c1917">Svelte</text>
+  <text x="392" y="170" font-family="Cascadia Code, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="10.5" font-weight="400" fill="#6b6258" text-anchor="end">6.5%</text>
+  <circle cx="30" cy="200" r="3.6" fill="#e4b29a"/>
+  <text x="42" y="204" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#1c1917">JavaScript</text>
+  <text x="392" y="204" font-family="Cascadia Code, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="10.5" font-weight="400" fill="#6b6258" text-anchor="end">3.5%</text>
+  <circle cx="30" cy="234" r="3.6" fill="#cdb8a4"/>
+  <text x="42" y="238" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#1c1917">Other</text>
+  <text x="392" y="238" font-family="Cascadia Code, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="10.5" font-weight="400" fill="#6b6258" text-anchor="end">3.5%</text>
+  <line x1="28" y1="284" x2="392" y2="284" stroke="#efe6d9"/>
+  <text x="28" y="300" font-family="Cascadia Code, SFMono-Regular, Consolas, Liberation Mono, monospace" font-size="9" font-weight="400" fill="#9a9083" letter-spacing="1.1">CURRENT STREAK 6 DAYS  ·  LONGEST 25</text>
+</svg>
